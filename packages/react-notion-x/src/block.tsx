@@ -625,8 +625,10 @@ export const Block: React.FC<BlockProps> = (props) => {
         }
       }
 
+      const caption = (block as types.BookmarkBlock)?.properties['caption']
+
       return (
-        <div className='notion-row'>
+        <div className='notion-column'>
           <components.Link
             target='_blank'
             rel='noopener noreferrer'
@@ -679,11 +681,11 @@ export const Block: React.FC<BlockProps> = (props) => {
             )}
           </components.Link>
 
-          {block?.properties?.caption && !isURL && (
-	          <figcaption className='notion-asset-caption'>
-	            <Text value={block.properties.caption} block={block} />
-	          </figcaption>
-	        )}
+          {caption && !isURL && (
+            <figcaption className='notion-asset-caption'>
+              <Text value={caption} block={block} />
+            </figcaption>
+          )}
         </div>
       )
     }
