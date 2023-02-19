@@ -612,11 +612,13 @@ export const Block: React.FC<BlockProps> = (props) => {
         title = getTextContent(link)
       }
 
+      let isURL = false
       if (title) {
         if (title.startsWith('http')) {
           try {
             const url = new URL(title)
             title = url.hostname
+            isURL = true
           } catch (err) {
             // ignore invalid links
           }
@@ -676,6 +678,12 @@ export const Block: React.FC<BlockProps> = (props) => {
               </div>
             )}
           </components.Link>
+
+          {block?.properties?.caption && !isURL && (
+	          <figcaption className='notion-asset-caption'>
+	            <Text value={block.properties.caption} block={block} />
+	          </figcaption>
+	        )}
         </div>
       )
     }
