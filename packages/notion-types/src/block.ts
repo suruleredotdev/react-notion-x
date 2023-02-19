@@ -171,6 +171,7 @@ export interface BookmarkBlock extends BaseBlock {
     link: Decoration[]
     title: Decoration[]
     description: Decoration[]
+    caption?: Decoration[]
   }
   format: {
     block_color?: string
